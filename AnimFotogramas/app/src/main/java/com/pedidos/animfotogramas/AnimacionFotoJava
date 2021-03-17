@@ -1,0 +1,61 @@
+package com.pedidos.animfotogramas;
+
+import android.app.Activity;
+import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AnimacionFotoJava extends AppCompatActivity implements OnClickListener {
+    AnimationDrawable animation;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        {
+            animation = new AnimationDrawable();
+            Resources resources = getResources();
+            Drawable imagenl
+                    = resources.getDrawable(R.drawable.chau);
+            Drawable imagen2
+                    = resources.getDrawable(R.drawable.unnamed);
+            Drawable imagen3
+                    = resources.getDrawable(R.drawable.minipitu);
+            Drawable imagen4
+                    = resources.getDrawable(R.drawable.chauvet);
+            Drawable imagen5
+                    = resources.getDrawable(R.drawable.linda);
+            Drawable imagen6
+                    = resources.getDrawable(R.drawable.train);
+            animation.addFrame(imagenl, 3000);
+            animation.addFrame(imagen2, 3000);
+            animation.addFrame(imagen3, 3000);
+            animation.addFrame(imagen4, 3000);
+            animation.addFrame(imagen5, 3000);
+            animation.addFrame(imagen6, 3000);
+            animation.setOneShot(false);
+            ImageView image
+                    = (ImageView)
+                    findViewById(R.id.imagen);
+            image.setVisibility(ImageView.VISIBLE);
+            image.setBackgroundDrawable(animation);
+            Button boton = (Button) findViewById(R.id.buttonl);
+            boton.setOnClickListener(this);
+            Button boton2 = (Button) findViewById(R.id.button2);
+            boton2.setOnClickListener(this);
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.buttonl) animation.start();
+        else animation.stop();
+    }
+}
